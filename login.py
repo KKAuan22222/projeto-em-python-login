@@ -1,5 +1,10 @@
-nome_do_aluno = ('thiiago', 'rafael', 'luan', 'andre', 'laysla','edvaldo', 'andreia', 'luan', 'kauan')
-materia = ('matematica', 'ciências', 'historia', 'geografia')
+me_do_aluno = ('thiago', 'rafael', 'luan', 'andre', 'laysla','edvaldo', 'andreia', 'luan', 'kauan')
+materia = ('calculo', 'corpo humano','historia do brasil', 'geografia do mundo')
 profesor = ('andre', 'rafael', 'luan', 'thiiago')
-curso =('calculo', 'corpo humano', 'historia do brasil', 'geografia do mundo') 
+curso =('matematica', 'ciências', 'historia', 'geografia') 
+media = ('7.0', '8.0', '9.0', '10.0') 
 
+nome_do_aluno = input("Digite o seu nome : ")
+materia = input("Digite a materia : ")
+professor = input("Digite o nome do professor : ") 
+curso = input("Digite o nome do curso : ")
