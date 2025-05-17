@@ -1,0 +1,2 @@
+btn_confirmar = ttk.Button(janela, text="Confirmar", command=salvar)
+btn_confirmar.pack(pady=20)

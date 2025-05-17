@@ -1,11 +1,25 @@
-nome_do_aluno = ('thiago', 'rafael', 'luan', 'andre', 'laysla','edvaldo', 'andreia', 'luan', 'kauan')
-materia = ('calculo')
-profesor = ('andre')
-curso =('matematica') 
-media = ('10.0') 
+aluno = ('aluno', 'aluno')
+nota = ('nota', 'nota')
+professor = ('professor', 'professor')
+curso = ('curso', 'curso')
+materia = ('materia', 'materia')
 
-nome_do_aluno = input("Digite o nome do aluno: ")
-materia = input("Digite a materia : ")
-professor = input("Digite o nome do professor : ") 
-curso = input("Digite o nome do curso : ")
+# Aluno
+nome_aluno = "João Silva"
+idade_aluno = 20
 
+# Nota
+nota_prova = 8.5
+nota_trabalho = 9.0
+
+# Professor
+nome_professor = "Maria Oliveira"
+disciplina_professor = "Matemática"
+
+# Curso
+nome_curso = "Engenharia"
+duracao_curso = 5  # em anos
+
+# Matéria
+nome_materia = "Cálculo I"
+carga_horaria = 60  # em horas
