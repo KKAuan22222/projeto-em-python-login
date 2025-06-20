@@ -1,61 +1,63 @@
 import tkinter as tk
-from tkinter import ttk
+import random
 
-nome_do_aluno = ['thiiago', 'rafael', 'luan', 'andre', 'laysla','edvaldo', 'andreia', 'luan', 'kauan']
-materia = ['matematica', 'ciências', 'historia', 'geografia']
-profesor = ['andre', 'rafael', 'luan', 'thiiago']
-curso = ['calculo', 'corpo humano', 'historia do brasil', 'geografia do mundo']
+# Função para iniciar/reiniciar o jogo
+def iniciar_jogo():
+    global numero_secreto, tentativas
+    numero_secreto = random.randint(1, 100)
+    tentativas = 0
+    entry_palpite.delete(0, tk.END)
+    label_resultado.config(text="Tente adivinhar o número entre 1 e 100!", fg="white")
 
-# Cria a janela principal
+def verificar_palpite():
+    global tentativas
+    try:
+        palpite = int(entry_palpite.get())
+    except ValueError:
+        label_resultado.config(text="Digite um número válido!", fg="red")
+        return
+
+    tentativas += 1
+    if palpite < numero_secreto:
+        label_resultado.config(text="Tente um número maior!", fg="yellow")
+    elif palpite > numero_secreto:
+        label_resultado.config(text="Tente um número menor!", fg="yellow")
+    else:
+        label_resultado.config(
+            text=f"Parabéns! Você acertou em {tentativas} tentativas!", fg="lime"
+        )
+
+# Janela principal
 root = tk.Tk()
-root.title("Informações dos Alunos")
+root.title("Jogo de Adivinhação")
+root.geometry("400x250")
+root.configure(bg="#222222")
 
-# Cria a tabela
-tree = ttk.Treeview(root, columns=('Aluno', 'Matéria', 'Professor', 'Curso'), show='headings')
-tree.heading('Aluno', text='Nome do Aluno')
-tree.heading('Matéria', text='Matéria')
-tree.heading('Professor', text='Professor')
-tree.heading('Curso', text='Curso')
+# Título
+label_titulo = tk.Label(root, text="Jogo de Adivinhação", font=("Arial", 18, "bold"), bg="#222222", fg="cyan")
+label_titulo.pack(pady=10)
 
-# Preenche a tabela com os dados existentes
-for i in range(min(len(nome_do_aluno), len(materia), len(profesor), len(curso))):
-    tree.insert('', tk.END, values=(nome_do_aluno[i], materia[i], profesor[i], curso[i]))
+# Instrução
+label_instrucao = tk.Label(root, text="Adivinhe o número entre 1 e 100", font=("Arial", 12), bg="#222222", fg="white")
+label_instrucao.pack()
 
-tree.pack(expand=True, fill='both')
+# Campo de entrada
+entry_palpite = tk.Entry(root, font=("Arial", 14), justify="center")
+entry_palpite.pack(pady=10)
 
-# Campos de entrada
-frame = tk.Frame(root)
-frame.pack(pady=10)
+# Botão de verificar
+btn_verificar = tk.Button(root, text="Verificar", font=("Arial", 12, "bold"), bg="cyan", fg="black", command=verificar_palpite)
+btn_verificar.pack(pady=5)
 
-entry_aluno = tk.Entry(frame)
-entry_aluno.grid(row=0, column=0)
-entry_aluno.insert(0, "Nome do Aluno")
+# Resultado
+label_resultado = tk.Label(root, text="", font=("Arial", 12), bg="#222222", fg="white")
+label_resultado.pack(pady=10)
 
-entry_materia = tk.Entry(frame)
-entry_materia.grid(row=0, column=1)
-entry_materia.insert(0, "Matéria")
+# Botão de novo jogo
+btn_novo = tk.Button(root, text="Novo Jogo", font=("Arial", 10), bg="#444444", fg="white", command=iniciar_jogo)
+btn_novo.pack(pady=5)
 
-entry_professor = tk.Entry(frame)
-entry_professor.grid(row=0, column=2)
-entry_professor.insert(0, "Professor")
-
-entry_curso = tk.Entry(frame)
-entry_curso.grid(row=0, column=3)
-entry_curso.insert(0, "Curso")
-
-def inserir():
-    aluno = entry_aluno.get()
-    mat = entry_materia.get()
-    prof = entry_professor.get()
-    cur = entry_curso.get()
-    if aluno and mat and prof and cur:
-        tree.insert('', tk.END, values=(aluno, mat, prof, cur))
-        entry_aluno.delete(0, tk.END)
-        entry_materia.delete(0, tk.END)
-        entry_professor.delete(0, tk.END)
-        entry_curso.delete(0, tk.END)
-
-btn_inserir = tk.Button(frame, text="Inserir", command=inserir)
-btn_inserir.grid(row=0, column=4, padx=5)
+# Iniciar o jogo pela primeira vez
+iniciar_jogo()
 
 root.mainloop()
